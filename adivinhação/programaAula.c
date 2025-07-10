@@ -20,6 +20,12 @@ int main() {
         scanf("%d", &chute); // Lê o chute do usuário
         printf("Seu chute foi: %d\n", chute); // Imprime o chute do usuário
 
+        if (chute < 0) {
+            printf("Você não pode chutar um número negativo!\n"); // Mensagem de erro se o chute for negativo
+            i--; // Decrementa o contador de tentativas para não contar essa tentativa inválida
+            continue; // Pula para a próxima iteração do loop
+        }
+
         int acertou = (chute == numerosecreto); // Verifica se o chute é igual ao número secreto
         int maior = (chute > numerosecreto); // Verifica se o chute é maior que o número secreto
         int menor =(chute < numerosecreto); // Verifica se o chute é menor que o número secreto
@@ -33,7 +39,7 @@ int main() {
         // caso contrário
         // else {}
 
-            //if (chute > numerosecreto) 
+        //if (chute > numerosecreto) 
         else if (maior) {
             printf("Seu chute foi maior que o número secreto.\n");
         }
