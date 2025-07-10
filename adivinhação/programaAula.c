@@ -37,8 +37,8 @@ int main() {
             }
             // printf("Você errou! Tente novamente.\n");
         }
-
+    }
+    printf("Fim do jogo!\n"); // imprime a mensagem de fim do jogo quando o usuário acerta ou esgotam as tentativas
 }
-printf("Fim do jogo!\n"); // imprime a mensagem de fim do jogo quando o usuário acerta ou esgotam as tentativas
 
 
