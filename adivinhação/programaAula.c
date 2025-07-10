@@ -1,5 +1,5 @@
 #include <stdio.h>
-#define NUMERO_TENTATIVAS 3 // Define o número de tentativas permitidas 
+#define NUMERO_TENTATIVAS 5 // Define o número de tentativas permitidas 
 
 int main() {
     // Imprime o cabeçalho do jogo
