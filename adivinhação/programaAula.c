@@ -12,6 +12,7 @@ int main() {
     int ganhou = 0; // Variável que indica se o usuário ganhou o jogo
     int tentativas = 1;
     // int numeroTentativas = 3; // Variável que define o número de tentativas permitidas
+    double pontos = 1000; // Variável que armazena os pontos do usuário 
 
     //loop 
     // for(int i = 1; i <= NUMERO_TENTATIVAS; i++) // Loop que permite ao usuário fazer 3 tentativas de um em um 
@@ -54,12 +55,20 @@ int main() {
             printf("Seu chute foi menor que o número secreto.\n");
         }
 
-        tentativas = tentativas + 1; // Incrementa o número de tentativas
+        tentativas++;
+
+        double pontosperdidos = (chute - numerosecreto) / 2.0; // Calcula os pontos perdidos com base na diferença entre o chute e o número secreto
+        if (pontosperdidos < 0){
+            pontosperdidos = pontosperdidos * -1; // Se a diferença for negativa, torna-a positiva
+        }
+        //ou usar o abs com uso do #include <stdlib.h> diminuindo o código 
+        pontos -= pontosperdidos; // Subtrai os pontos perdidos dos pontos totais do usuário
+        // tentativas = tentativas + 1; // Incrementa o número de tentativas
         // printf("Você errou! Tente novamente.\n");
     }
     printf("Fim do jogo!\n"); // imprime a mensagem de fim do jogo quando o usuário acerta ou esgotam as tentativas
     printf("Você acertou o número secreto em %d tentativas!\n", tentativas - 1); // Imprime o número de tentativas que o usuário levou para acertar
-    printf("O número secreto era: %d\n", numerosecreto); // Imprime o número secreto
+    printf("Total de pontos: %.1f\n", pontos); // Imprime a pontuação final do usuário 
 }
 
 
