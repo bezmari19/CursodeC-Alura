@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h> // Biblioteca para usar a função abs() se necessário
+#include <time.h> // Biblioteca para usar a função time() se necessário
 // #define NUMERO_TENTATIVAS 5 // Define o número de tentativas permitidas 
 
 int main() {
@@ -7,20 +9,36 @@ int main() {
     printf("* Bem vindo ao nosso jogo de adivinhação! *\n");
     printf("*******************************************\n");
 
-    int numerosecreto = 42; // Variável que armazena o número secreto
+    int numerosecreto = rand() % 100; // Variável que armazena o número secreto
     int chute; // Variável que armazena o chute do usuário
-    int ganhou = 0; // Variável que indica se o usuário ganhou o jogo
     int tentativas = 1;
     // int numeroTentativas = 3; // Variável que define o número de tentativas permitidas
     double pontos = 1000; // Variável que armazena os pontos do usuário 
+    int acertou = 0; // Variável que indica se o usuário acertou o número secreto
 
+    int nível; // Variável que armazena o nível de dificuldade escolhido pelo usuário
+    printf("Escolha o nível de dificuldade que você quer:\n");
+    printf("(1) Fácil (2) Médio (3) Difícil\n"); // Imprime as opções de nível de dificuldade
+    printf("Nível: ");
+    scanf("%d", &nível); // Lê o nível de dificuldade escolhido pelo usuário
+
+    int numerodetentativas; // Variável que define o número de tentativas permitidas
+    // Ou uso de Switch case ao invés de if else que também é bastante usado 
+    if (nível == 1) { // Se o usuário escolher o nível fácil
+        numerodetentativas = 15; // Define o número de tentativas como 20
+    } else if (nível == 2) { // Se o usuário escolher o nível médio
+        numerodetentativas = 10; // Define o número de tentativas como 10
+    } else { // Se o usuário escolher o nível difícil
+        numerodetentativas = 5; // Define o número de tentativas como 5
+    }
+    printf("Você escolheu o nível %d e terá %d tentativas.\n", nível, numerodetentativas); // Imprime o nível de dificuldade escolhido e o número de tentativas permitidas
     //loop 
     // for(int i = 1; i <= NUMERO_TENTATIVAS; i++) // Loop que permite ao usuário fazer 3 tentativas de um em um 
 
-    while (ganhou == 0) {
-
+    // while (ganhou == 0) 
+    for (int i = 1; i <= numerodetentativas; i++) { // Loop que permite ao usuário fazer 5 tentativas de um em um
         // printf("Tentativa %d de %d\n", i, NUMERO_TENTATIVAS); // Imprime o número da tentativa atual
-        printf("Tentativa %d\n", tentativas); // Imprime o número da tentativa atual (alterado para sempre 1, pois o loop não tem contador)
+        printf("Tentativa %d\n", i); // Imprime o número da tentativa atual
         printf("Qual é o seu chute?\n"); // Solicita o chute do usuário
         
         scanf("%d", &chute); // Lê o chute do usuário
@@ -32,18 +50,16 @@ int main() {
             continue; // Pula para a próxima iteração do loop
         }
 
-        int acertou = (chute == numerosecreto); // Verifica se o chute é igual ao número secreto
+        acertou = (chute == numerosecreto); // Verifica se o chute é igual ao número secreto
         int maior = (chute > numerosecreto); // Verifica se o chute é maior que o número secreto
         // int menor =(chute < numerosecreto); // Verifica se o chute é menor que o número secreto
         
         // se o chute for igual ao numero secreto
         //if (chute == numerosecreto)
         if (acertou) {
-            printf("Parabéns! Você acertou!\n"); // Mensagem de sucesso
-            //break; // Sai do loop se o usuário acertar
-
-            ganhou = 1; // Define a variável ganhou como 1 para indicar que o usuário ganhou o jogo
-        }
+            // printf("Parabéns! Você acertou!\n");  Mensagem de sucesso
+            break; // Sai do loop se o usuário acertar
+            }
         // caso contrário
         // else {}
 
@@ -67,8 +83,14 @@ int main() {
         // printf("Você errou! Tente novamente.\n");
     }
     printf("Fim do jogo!\n"); // imprime a mensagem de fim do jogo quando o usuário acerta ou esgotam as tentativas
-    printf("Você acertou o número secreto em %d tentativas!\n", tentativas - 1); // Imprime o número de tentativas que o usuário levou para acertar
+    if(acertou) {
+        printf("Parabéns! Você acertou o número secreto!\n"); // Mensagem de sucesso se o usuário acertar
+        printf("Você acertou o número secreto em %d tentativas!\n", tentativas - 1); // Imprime o número de tentativas que o usuário levou para acertar
     printf("Total de pontos: %.1f\n", pontos); // Imprime a pontuação final do usuário 
+    } else {
+        printf("Você não acertou o número secreto. O número era %d.\n", numerosecreto); // Mensagem de erro se o usuário não acertar
+    }
+
 }
 
 
